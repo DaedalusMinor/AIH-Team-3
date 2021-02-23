@@ -45,7 +45,7 @@ class Example(QWidget):
 #df = read_excel('C:/Users/Daeda/Documents/Python WS/TippecanoeVisuals/LocationReport (25 Rendom 041120-061020.xlsx', parse_dates=True, nrows=MAX_MINUTES)
 #clean_df = gps_model_tools.const_freq_transf(df['Location DateTime'].values, df['Latitude'].values, df['Longitude'].values)
 #location = clean_df.values[:, 1:3]
-m = folium.Map(location=[40, -86])
+m = folium.Map(location=[40.42, -86.9])
 #for point in range(0, 60):
     #folium.Marker([location[point, 0], location[point,1]]).add_to(m)
 
