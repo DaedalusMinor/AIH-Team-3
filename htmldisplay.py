@@ -8,7 +8,10 @@ import pandas as pd
 import gps_model_tools
 from folium.plugins import MarkerCluster
 
+# Name of the HTML file to be generated
 web_file = 'index.html'
+
+# Number of data points to pull from excel file
 MAX_MINUTES = 114
 class Example(QWidget):
 
@@ -39,16 +42,16 @@ class Example(QWidget):
             html = f.read()
             self.webEngineView.setHtml(html)
 
-df = read_excel('C:/Users/Daeda/Documents/Python WS/TippecanoeVisuals/LocationReport (25 Rendom 041120-061020.xlsx', parse_dates=True, nrows=MAX_MINUTES)
-clean_df = gps_model_tools.const_freq_transf(df['Location DateTime'].values, df['Latitude'].values, df['Longitude'].values)
-location = clean_df.values[:, 1:3]
+#df = read_excel('C:/Users/Daeda/Documents/Python WS/TippecanoeVisuals/LocationReport (25 Rendom 041120-061020.xlsx', parse_dates=True, nrows=MAX_MINUTES)
+#clean_df = gps_model_tools.const_freq_transf(df['Location DateTime'].values, df['Latitude'].values, df['Longitude'].values)
+#location = clean_df.values[:, 1:3]
 m = folium.Map(location=[40, -86])
-for point in range(0, 60):
-    folium.Marker([location[point, 0], location[point,1]]).add_to(m)
+#for point in range(0, 60):
+    #folium.Marker([location[point, 0], location[point,1]]).add_to(m)
 
-marker_cluster = MarkerCluster().add_to(m)
-for point in range(60, 108):
-    folium.Marker([location[point, 0], location[point,1]]).add_to(marker_cluster)
+#marker_cluster = MarkerCluster().add_to(m)
+#for point in range(60, 108):
+    #folium.Marker([location[point, 0], location[point,1]]).add_to(marker_cluster)
     
 m.save(web_file)
 app = QApplication(sys.argv)
