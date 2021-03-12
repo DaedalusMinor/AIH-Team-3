@@ -57,6 +57,12 @@ def change_color_to_time():
                             fill=True,
                             fill_opacity=1.0,
                             color="#888888").add_to(new_map)
+        
+def change_color_to_speed():
+    #TODO: add changing the color scheme to speed
+    
+def change_color_to_risk():
+    #TODO: add changing the color scheme to speed
     
 
     new_map.save(map_dir)
