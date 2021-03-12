@@ -13,6 +13,7 @@ y = numpy.zeros(n)
 locations = []
 start_location=[40.4259,-86.9081]
 m = folium.Map(location=start_location, zoom_start=13)
+at_risk = numpy.random.uniform(low=0.0, high=1.1, size=(n,))
 start_time = 0
 map_dir = "index.html"
 MINUTES_IN_DAY = 1440
@@ -55,18 +56,27 @@ def change_color_to_time():
         folium.CircleMarker(location=[locations[i][0], locations[i][1]],
                             fill_color=rgb,
                             fill=True,
+                            radius=5,
+                            popup="Location: " + str(locations[i][0]) + ", " + str(locations[i][1]) + "\nTime:" + str(time),
                             fill_opacity=1.0,
                             color="#888888").add_to(new_map)
-        
-def change_color_to_speed():
-    #TODO: add changing the color scheme to speed
+    new_map.save(map_dir)
     
 def change_color_to_risk():
-    #TODO: add changing the color scheme to speed
-    
-
+    new_map = folium.Map(location=start_location)
+    #folium.PolyLine(locations).add_to(new_map)
+    for i in range(len(locations)):
+        time = times[i]
+        risk = math.trunc(at_risk[i])
+        color_tuple = (255 * (risk), 255 * (1 - risk), 0)
+        rgb = rgb_to_hex(color_tuple)
+        folium.CircleMarker(location=[locations[i][0], locations[i][1]],
+                            fill_color=rgb,
+                            fill=True,
+                            radius=5,
+                            popup="Location: " + str(locations[i][0]) + ", " + str(locations[i][1]) + "\nTime:" + str(time),
+                            fill_opacity=1.0,
+                            color="#888888").add_to(new_map)
     new_map.save(map_dir)
 
-change_color_to_time()
-
-        
+change_color_to_risk()
