@@ -94,9 +94,19 @@ def change_color_to_speed():
         elif (times[i]-times[i-1])==0:
             speed=0;
         else:
-            coords_1 = [locations[i][0], locations[i][1]]
-            coords_2 = [locations[i-1][0], locations[i-1][1]]
-            distance = h3.point_dist(coords_1,coords_2)
+            #coords_1 = [locations[i][0], locations[i][1]]
+            #coords_2 = [locations[i-1][0], locations[i-1][1]]
+            #distance = h3.point_dist(coords_1,coords_2)
+            R = 6373.0
+            lat1 = radians(locations[i][0])
+            lon1 = radians(locations[i][1])
+            lat2 = radians(locations[i-1][0])
+            lon2 = radians(locations[i-1][1])
+            dlon = lon2 - lon1
+            dlat = lat2 - lat1
+            a = sin(dlat / 2)**2 + cos(lat1) * cos(lat2) * sin(dlon / 2)**2
+            c = 2 * atan2(sqrt(a), sqrt(1 - a))
+            distance = R * c
             speed= abs(distance / (times[i]-times[i-1]))
         
         speeddiff=speed*1000/60 - 1.4
