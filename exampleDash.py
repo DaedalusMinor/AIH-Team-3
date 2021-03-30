@@ -42,7 +42,6 @@ points = [dict(lat=40.4259 + genwalk(i)[0], lon=-86.9081 + genwalk(i)[1], value=
 data = dlx.dicts_to_geojson(points)  
 # Create geojson.
 ns = Namespace("dlx", "scatter")
-#geojson = dl.GeoJSON(data=data, cluster=True, options=dict(pointToLayer=ns("pointToLayer")))
 geojson = dl.GeoJSON(data=data, options=dict(pointToLayer=ns("pointToLayer")), cluster=True, hideout=dict(colorscale=['#088F8F']))
 # Create the app.
 app = dash.Dash(external_scripts=["https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.0/chroma.min.js"])
