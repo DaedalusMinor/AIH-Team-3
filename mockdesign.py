@@ -6,14 +6,14 @@ import os
 import sys
 import makememap
 
-class Ui_MainWindow(object):
+class Ui_MainWindow(QMainWindow):
     def setupUi(self, MainWindow):
-        makememap.change_color_to_time()
+        ##makememap.change_color_to_time()
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
             
         MainWindow.setEnabled(True)
-        MainWindow.resize(955, 824)
+        MainWindow.resize(1100, 600)
         MainWindow.setMouseTracking(False)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -35,29 +35,37 @@ class Ui_MainWindow(object):
         # Pressing button shows a dialog box
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setGeometry(QtCore.QRect(600, 100, 181, 31))
-        
+        self.pushButton.setGeometry(QtCore.QRect(600, 250, 181, 31))
 
-        self.horizontalSlider = QSlider(self.centralwidget)
-        self.horizontalSlider.setObjectName(u"horizontalSlider")
-        self.horizontalSlider.setGeometry(QtCore.QRect(590, 40, 261, 31))
-        self.horizontalSlider.setOrientation(QtCore.Qt.Horizontal)
+        # self.horizontalSlider = QSlider(self.centralwidget)
+        # self.horizontalSlider.setObjectName(u"horizontalSlider")
+        # self.horizontalSlider.setGeometry(QtCore.QRect(590, 40, 261, 31))
+        # self.horizontalSlider.setOrientation(QtCore.Qt.Horizontal)
+
+        self.calendar1 = QCalendarWidget(self.centralwidget)
+        self.calendar1.setGeometry(600, 40, 200, 200)
+        self.calendar1.setGridVisible(True)
+        
+        self.calendar2 = QCalendarWidget(self.centralwidget)
+        self.calendar2.setGeometry(810, 40, 200, 200)
+        self.calendar2.setGridVisible(True)
+
         self.pushButton_2 = QPushButton(self.centralwidget)
         self.pushButton_2.setObjectName(u"pushButton_2")
-        self.pushButton_2.setGeometry(QtCore.QRect(600, 180, 181, 31))
+        self.pushButton_2.setGeometry(QtCore.QRect(600, 300, 181, 31))
         self.comboBox = QComboBox(self.centralwidget)
         self.comboBox.addItem("")
         self.comboBox.addItem("")
         self.comboBox.addItem("")
         self.comboBox.setObjectName(u"comboBox")
-        self.comboBox.setGeometry(QtCore.QRect(600, 250, 181, 31))
+        self.comboBox.setGeometry(QtCore.QRect(600, 370, 181, 31))
         self.pushButton_3 = QPushButton(self.centralwidget)
         self.pushButton_3.setObjectName(u"pushButton_3")
-        self.pushButton_3.setGeometry(QtCore.QRect(640, 520, 112, 32))
+        self.pushButton_3.setGeometry(QtCore.QRect(600, 509, 181, 32))
         MainWindow.setCentralWidget(self.centralwidget)
         self.pushButton.raise_()
         self.verticalLayoutWidget.raise_()
-        self.horizontalSlider.raise_()
+        # self.horizontalSlider.raise_()
         self.pushButton_2.raise_()
         self.comboBox.raise_()
         self.pushButton_3.raise_()
@@ -69,13 +77,14 @@ class Ui_MainWindow(object):
         self.statusbar.setObjectName(u"statusbar")
         MainWindow.setStatusBar(self.statusbar)
         QWidget.setTabOrder(self.pushButton_2, self.comboBox)
-        QWidget.setTabOrder(self.comboBox, self.horizontalSlider)
-        QWidget.setTabOrder(self.horizontalSlider, self.pushButton_3)
+        # QWidget.setTabOrder(self.comboBox, self.horizontalSlider)
+        # QWidget.setTabOrder(self.horizontalSlider, self.pushButton_3)
         QWidget.setTabOrder(self.pushButton_3, self.pushButton)
 
         self.retranslateUi(MainWindow)
         self.pushButton.clicked.connect(self.show_dialog)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+    
     # setupUi
 
     def show_dialog(self):
@@ -96,7 +105,6 @@ class Ui_MainWindow(object):
             makememap.change_color_to_risk()
     
         self.webEngineView.reload()
-        
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QtCore.QCoreApplication.translate("MainWindow", u"MainWindow", None))
