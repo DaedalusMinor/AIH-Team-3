@@ -23,14 +23,11 @@ import time
 import threading
 
 map = None
-print("mapap")
 def makemap():
     map = makememap.Map(1440 * 10)
 
 thread = threading.Thread(target=makemap)
 thread.start()
-print("mamapap")
-
 
 class Ui_MainWindow(QMainWindow):
     def setupUi(self, MainWindow):
